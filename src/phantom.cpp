@@ -286,3 +286,17 @@ void Phantom::printConsoleMessage(const QString &message, int lineNumber, const 
         msg = source + ":" + QString::number(lineNumber) + " " + msg;
     std::cout << qPrintable(msg) << std::endl;
 }
+
+
+QString Phantom::getStdinLine()
+{
+    std::string instr;
+    while(true) {
+        int ch = std::cin.get();
+        if (ch == '\n' || ch == EOF || ch == '\r' )
+            break;
+        instr.push_back(static_cast<char>(ch));
+    }
+    return QString(instr.c_str());
+}
+
